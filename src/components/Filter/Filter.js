@@ -1,25 +1,17 @@
-import React, { Component } from 'react';
+import s from './Filter.module.css';
 
-class Filter extends Component {
-  handleChange = e => {
-    const inputName = e.target.name;
-    this.props.filter.setState({ [inputName]: e.target.value });
-  };
-
-  render() {
-    return (
-      <label>
-        Find contact by name
-        <input
-          name="filter"
-          type="text"
-          placeholder="Enter to find"
-          value={this.props.filter.state.filter}
-          onChange={this.handleChange}
-        />
-      </label>
-    );
-  }
-}
+const Filter = ({ value, onChange }) => (
+  <label>
+    Find contact by name
+    <input
+      className={s.Filter}
+      name="filter"
+      type="text"
+      placeholder="Enter to find"
+      value={value}
+      onChange={onChange}
+    />
+  </label>
+);
 
 export default Filter;

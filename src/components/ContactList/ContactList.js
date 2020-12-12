@@ -1,34 +1,19 @@
-import React, { Component } from 'react';
+import s from './ContactList.module.css';
 
-class ContactList extends Component {
-  deleteContact = contactId => {
-    this.props.appThis.setState(prevState => ({
-      contacts: prevState.contacts.filter(contact => contact.id !== contactId),
-    }));
-  };
-
-  render() {
-    return (
-      <ul>
-        {this.props.appThis.state.contacts.map(
-          item =>
-            item.name
-              .toLowerCase()
-              .includes(this.props.appThis.state.filter.toLowerCase()) && (
-              <li key={item.id}>
-                {item.name}: {item.number}{' '}
-                <button
-                  type="button"
-                  onClick={() => this.deleteContact(item.id)}
-                >
-                  Delete
-                </button>
-              </li>
-            ),
-        )}
-      </ul>
-    );
-  }
-}
+const ContactList = ({ contacts, filter, deleteContact }) => (
+  <ul>
+    {contacts.map(
+      item =>
+        item.name.toLowerCase().includes(filter.toLowerCase()) && (
+          <li key={item.id}>
+            {item.name}: {item.number}{' '}
+            <button id={item.id} type="button" onClick={deleteContact}>
+              Delete
+            </button>
+          </li>
+        ),
+    )}
+  </ul>
+);
 
 export default ContactList;
